@@ -1,0 +1,7 @@
+.venv
+__pycache__
+_archive
+/data/*
+!/data/data_clear.csv
+!/data/products_process.csv
+!/data/products_raw.csv
