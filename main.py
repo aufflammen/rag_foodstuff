@@ -29,12 +29,12 @@ def scrape_pages():
 
 @app.command()
 def clear_data():
-    """Обрабатывает данные товаров"""
+    """Собирает необходимые данные из сырых загруженных страниц"""
     data_from_raw_pages('data/raw_pages', 'data/data_clear_r.csv')
 
 @app.command()
 def query(text: str):
-    """Запрос в LLM"""
+    """Текстовый запрос в RAG"""
     query_rag(text)
 
 if __name__ == "__main__":

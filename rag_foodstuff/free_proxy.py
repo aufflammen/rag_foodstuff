@@ -10,7 +10,7 @@ class GetFreeProxy:
     def __init__(self):
         self.proxy_sources = [
             "https://www.sslproxies.org/",
-            "https://free-proxy-list.net/",
+            # "https://free-proxy-list.net/",
             # "https://api.proxyscrape.com/v2/?request=getproxies&timeout=5000&country=all",
         ]
         self.proxy_file = set(Path('data/proxyscrape.txt').read_text(encoding='utf-8').strip().split('\n'))
@@ -29,9 +29,11 @@ class GetFreeProxy:
             unique_proxies.update(self.proxy_file)
 
         print(f"🟡 Количество proxy для проверки: {len(unique_proxies)}")
+        valid_proxies_list =  await self.validate_proxies(list(unique_proxies))
+        print(f"✅ Найдено рабочих прокси: {len(valid_proxies_list)}")
+        print(valid_proxies_list)
 
-        # Проверяем прокси перед добавлением
-        return await self.validate_proxies(list(unique_proxies))
+        return valid_proxies_list
 
 
     async def fetch_proxies(self, url):
@@ -83,9 +85,7 @@ class GetFreeProxy:
         
 
 # async def main():
-#     proxies_list = await GetFreeProxy().get_proxies_list()
-#     print(f"✅ Найдено рабочих прокси: {len(proxies_list)}")
-#     print(proxies_list)
+#     await GetFreeProxy().get_proxies_list()
 
 # if __name__ == '__main__':
 #     asyncio.run(main())
