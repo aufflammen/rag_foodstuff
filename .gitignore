@@ -2,6 +2,7 @@
 __pycache__
 _archive
 /data/*
+!/data/faiss_products_db
 !/data/data_clear.csv
 !/data/products_process.csv
 !/data/products_raw.csv
