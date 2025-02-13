@@ -6,6 +6,7 @@ from rag_foodstuff import (
     data_preprocessing, 
     ScrapingProductsPages,
     data_from_raw_pages,
+    query_rag
 )
 
 app = typer.Typer()
@@ -30,6 +31,11 @@ def scrape_pages():
 def clear_data():
     """Обрабатывает данные товаров"""
     data_from_raw_pages('data/raw_pages', 'data/data_clear_r.csv')
+
+@app.command()
+def query(text: str):
+    """Запрос в LLM"""
+    query_rag(text)
 
 if __name__ == "__main__":
     app()
